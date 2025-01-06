@@ -16,7 +16,9 @@ This repository contains scripts for analyzing 16S metabarcoding data to predict
 
 ##  **Dependencies**  
 ### **QIIME2 Environment:**  
-- QIIME2 version **2022.11**    
+- QIIME2 version **2022.11**
+- FastQ files and manifest file for the location of files
+- Meatadata file in tsv format 
    
 ### **R Environment:**  
 - R version 4.3.3  
