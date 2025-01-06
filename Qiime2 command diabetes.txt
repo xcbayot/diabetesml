@@ -1,0 +1,92 @@
+conda activate qiime2-2023.2
+
+#These sections can be excluded if Deblur OTU tables and representatives sequences biom files are obtained from Qiita using Redbiom software
+
+# ----- #
+# Importing and Demultiplexing Sequences
+# Objective: Import sequence data and create a visualization of the demux summary.
+# ----- #
+
+qiime tools import \
+  --type 'SampleData[SequencesWithQuality]' \
+  --input-path manifest.txt \
+  --output-path single-end-demux.qza \
+  --input-format SingleEndFastqManifestPhred33V2
+
+# ----- #
+# Demultiplexing and Visualization
+# Objective: Summarize and visualize the quality of the demultiplexed sequences.
+# ----- #
+
+qiime demux summarize \
+  --i-data single-end-demux.qza \
+  --o-visualization demux.qzv
+
+# ----- #
+# Trimming Sequences with Cutadapt
+# Objective: Trim primers from the sequences using Cutadapt.
+# ----- #
+
+qiime cutadapt trim-paired \
+  --i-demultiplexed-sequences paired-end-demux.qza \
+  --p-front INSERTPRIMERSEQUENCE \  # Replace INSERTPRIMERSEQUENCE with the actual primer sequence
+  --p-no-match-read-wildcards \
+  --p-discard-untrimmed \
+  --p-match-adapter-wildcards \
+  --o-trimmed-sequences primer_trimmed.qza \
+  --p-cores 30
+
+# ----- #
+# Denoising Sequences with Deblur
+# Objective: Perform sequence denoising using Deblur to obtain representative sequences and OTU table.
+# ----- #
+
+qiime deblur denoise-16S \
+  --i-demultiplexed-seqs trimmed-demux.qza \  # Provide the file with the trimmed sequences from Cutadapt
+  --p-left-trim-len SELECTTRIMMINGLENGTH \  # Replace SELECTTRIMMINGLENGTH with the actual length to trim
+  --p-sample-stats \
+  --o-representative-sequences representative-sequences.qza \
+  --o-table table.qza \
+  --o-stats denoising-stats.qza
+
+# ----- #
+# Visualizing the OTU Table
+# Objective: Check the content and quality of the OTU table.
+# ----- #
+
+qiime feature-table summarize \
+  --i-table table.qza \
+  --o-visualization table.qzv
+
+#These sectuions can be performed on Deblur OTU tables and representatives sequences biom files obtained from Qiita using Redbiom software, loading of these files is not shown
+# ----- #
+# Taxonomy Classification
+# Objective: Assign taxonomy to the representative sequences using a pre-trained classifier.
+# ----- #
+
+qiime feature-classifier classify-sklearn \
+  --i-classifier gg-13-8-99-515-806-nb-classifier.qza \  # Replace with the path to your classifier file
+  --i-reads representative-sequences.qza \
+  --o-classification taxonomy.qza
+
+# ----- #
+# Visualizing Taxonomy Assignments
+# Objective: Check the taxonomy assignments.
+# ----- #
+
+qiime metadata tabulate \
+  --i-data taxonomy.qza \
+  --o-visualization taxonomy.qzv
+
+# ----- #
+# Building Phylogenetic Tree
+# Objective: Build a phylogenetic tree from the representative sequences using alignment and FastTree.
+# ----- #
+
+qiime phylogeny align-to-tree-mafft-fasttree \
+  --i-sequences representative-sequences.qza \
+  --output-dir tree
+
+
+
+
