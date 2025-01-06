@@ -7,7 +7,7 @@ This repository contains scripts for analyzing 16S metabarcoding data to predict
 
 ##  **Pipeline Overview**  
 1. **QIIME2 Analysis:**  
-   - Demultiplexing and OTU calculation from 16S metabarcoding FASTQ files.  
+   - Demultiplexing and OTU calculation from 16S metabarcoding FASTQ files or taxonomy classification if OTU Biom files are used from Qiita  
 2. **R Analysis:**  
    - Subsampling and normalization of hyper-variable sOTUs.  
    - Machine learning model training and evaluation for diabetes prediction.  
