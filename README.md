@@ -1,4 +1,4 @@
-# diabetesML  
+# diabetesml
 **R and QIIME2 Scripts for Hypervariable sOTU Machine Learning Analysis**  
 
 This repository contains scripts for analyzing 16S metabarcoding data to predict diabetes status using machine learning models. The analysis includes subsampling, normalization, and model training across different sOTU subsets (100, 500, 1000 hyper-variable sOTUs).  
