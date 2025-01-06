@@ -17,7 +17,7 @@ This repository contains scripts for analyzing 16S metabarcoding data to predict
 ##  **Dependencies**  
 ### **QIIME2 Environment:**  
 - QIIME2 version **2022.11**    
-   - `dplyr` 
+   
 ### **R Environment:**  
 - **R version 4.3.3**  
 - **Required R Packages:**  
@@ -32,7 +32,26 @@ This repository contains scripts for analyzing 16S metabarcoding data to predict
    - `glmnet`  
    - `kernlab`  
    - `pROC`
- 
-   - To install required R packages:  
+
+---
+
+##  **Usage Instructions**  
+
+### **1. QIIME2 Scripts:**  
+- Run the QIIME2 script in the **QIIME2 environment** via Python:  
+```bash
+conda activate qiime2-2023.2
+qiime tools import --type ...  
+
+
+---
+📊 **2. R Scripts:**
+- Open the R script in RStudio or run it directly in R:
+```r  
+source("sOTU_analysis.R")  
+
+The script will guide you through subsampling, normalization, and model training steps.
+
+To install required R packages:  
 ```r  
 install.packages(c("dplyr", "ggplot2", "vegan", "phyloseq", "caret", "randomForest", "rpart", "glmnet", "kernlab", "pROC"))  
