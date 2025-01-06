@@ -17,8 +17,8 @@ This repository contains scripts for analyzing 16S metabarcoding data to predict
 ##  **Dependencies**  
 ### **QIIME2 Environment:**  
 - QIIME2 version **2022.11**
-- FastQ files and manifest file for the location of files
-- Meatadata file in tsv format 
+- FastQ files and manifest file for the location of files and metadata file in tsv format, if not, Biom file with deblur OTU table and rep seqs file
+- Naive Bayes classifier that has been pre-trained on the Greengenes 13_8 database
    
 ### **R Environment:**  
 - R version 4.3.3  
