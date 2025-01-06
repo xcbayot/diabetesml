@@ -45,7 +45,7 @@ qiime tools import --type ...
 ```
 
 ---
-📊 **2. R Scripts:**
+### **2. R Scripts:**
 - Open the R script in RStudio or run it directly in R:
 ```r  
 source("sOTU_analysis.R")  
