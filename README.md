@@ -42,7 +42,7 @@ This repository contains scripts for analyzing 16S metabarcoding data to predict
 ```bash
 conda activate qiime2-2023.2
 qiime tools import --type ...  
-
+```
 
 ---
 📊 **2. R Scripts:**
