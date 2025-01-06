@@ -49,9 +49,10 @@ qiime tools import --type ...
 - Open the R script in RStudio or run it directly in R:
 ```r  
 source("sOTU_analysis.R")  
-
+```
 The script will guide you through subsampling, normalization, and model training steps.
 
 To install required R packages:  
 ```r  
 install.packages(c("dplyr", "ggplot2", "vegan", "phyloseq", "caret", "randomForest", "rpart", "glmnet", "kernlab", "pROC"))  
+```
