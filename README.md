@@ -19,8 +19,8 @@ This repository contains scripts for analyzing 16S metabarcoding data to predict
 - QIIME2 version **2022.11**    
    
 ### **R Environment:**  
-- **R version 4.3.3**  
-- **Required R Packages:**  
+- R version 4.3.3  
+- Required R Packages:  
    - `dplyr`  
    - `ggplot2`  
    - `vegan`  
